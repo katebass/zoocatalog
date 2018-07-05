@@ -96,6 +96,41 @@ a.desc:after {
     border: none;
 }
 
+.categories-list li{
+    list-style: none;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.categories-list a{
+    width: 100%;
+    heigth: 100%;
+}
+
+.category-title{
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

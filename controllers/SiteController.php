@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Category;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $categories = Category::find()
+            ->all();
+
+        //улучшение читабельности отладочной информации
+        //echo '<pre>';
+        //выводит данные
+        //print_r($categories);
+        //выводит данные с типами данных
+        //var_dump($categories);
+        //die;
+            
+        return $this->render('index', [
+            'categories' => $categories,
+        ]);
     }
 
     /**

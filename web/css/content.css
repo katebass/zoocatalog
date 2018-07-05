@@ -1,0 +1,10 @@
+.categories-list li{
+	list-style: none;
+	padding: 5px;
+	border: 1px solid black;
+}
+
+.categories-list a{
+	width: 100%;
+	heigth: 100%;
+}
