@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+$this->registerCssFile("css/content.css");
 $this->title = 'Zoo Catalog';
 use yii\helpers\Html;
 
