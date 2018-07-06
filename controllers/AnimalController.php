@@ -8,6 +8,7 @@ use app\models\AnimalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * AnimalController implements the CRUD actions for Animal model.
@@ -66,7 +67,18 @@ class AnimalController extends Controller
     {
         $model = new Animal();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            $imageName = $model->name;
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $filePath = 'uploads/'.$imageName.'.'.$model->file->extension;
+            
+            $model->file->saveAs($filePath);
+
+            $model->photo = $filePath;
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

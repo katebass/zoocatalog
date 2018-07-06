@@ -21,6 +21,9 @@ class Animal extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+    public $file;
+    
     public static function tableName()
     {
         return 'animal';
@@ -36,6 +39,7 @@ class Animal extends \yii\db\ActiveRecord
             [['category_id', 'age'], 'integer'],
             [['name', 'breed'], 'string', 'max' => 45],
             [['photo'], 'string', 'max' => 191],
+            [['file'], 'file'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -51,7 +55,7 @@ class Animal extends \yii\db\ActiveRecord
             'name' => 'Name',
             'breed' => 'Breed',
             'age' => 'Age',
-            'photo' => 'Photo',
+            'photo' => 'Animal photo',
         ];
     }
 
