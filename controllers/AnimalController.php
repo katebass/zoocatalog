@@ -63,12 +63,14 @@ class AnimalController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($category_id = null)
     {
         $model = new Animal();
 
+        //проверка типа запроса isGet isPost isPut is Ajax 
+        //var_dump(Yii::$app->request->isGet); die;
+        
         if ($model->load(Yii::$app->request->post())) {
-
             $imageName = $model->name;
             $model->file = UploadedFile::getInstance($model, 'file');
             $filePath = 'uploads/'.$imageName.'.'.$model->file->extension;
@@ -84,6 +86,7 @@ class AnimalController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'category_id' => $category_id,
         ]);
     }
 

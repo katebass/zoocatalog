@@ -14,13 +14,18 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(
-            ArrayHelper::map(Category::find()->all(), 'id', 'title'),
-            [
-                'prompt' => 'Select category',
-                'class' => 'custom-select'
-            ]
-    ) ?>
+    <?php if($category_id): ?>
+        <?php $model->category_id = $category_id; ?> 
+        <?= $form->field($model, 'category_id')->hiddenInput()->label(false) ?>
+    <?php else: ?>
+         <?= $form->field($model, 'category_id')->dropDownList(
+                ArrayHelper::map(Category::find()->all(), 'id', 'title'),
+                [
+                    'prompt' => 'Select category',
+                    'class' => 'custom-select'
+                ]
+        ) ?>
+    <?php endif; ?> 
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\Category;
 
 
 /* @var $this yii\web\View */
@@ -12,10 +13,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="animal-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+	<?php if($category_id): ?>
+
+		<h1><?= Html::encode($this->title) ?> by the category "<b><?= Html::encode(strtolower(Category::find()->where(['id' => $category_id])->one()->title)); ?></b>"</h1>
+
+    <?php else: ?>
+
+    	<h1><?= Html::encode($this->title) ?></h1>
+    	
+    <?php endif; ?>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'category_id' => $category_id,
     ]) ?>
 
 </div>
