@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AnimalSearch */
@@ -25,10 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
+
+            'id',
+            'category_id',
             'name',
             'breed',
             'age',
+            //'photo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -19,7 +19,7 @@ class AnimalSearch extends Animal
     {
         return [
             [['id', 'category_id', 'age'], 'integer'],
-            [['name', 'breed'], 'safe'],
+            [['name', 'breed', 'photo'], 'safe'],
         ];
     }
 
@@ -65,7 +65,8 @@ class AnimalSearch extends Animal
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'breed', $this->breed]);
+            ->andFilterWhere(['like', 'breed', $this->breed])
+            ->andFilterWhere(['like', 'photo', $this->photo]);
 
         return $dataProvider;
     }

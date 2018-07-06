@@ -12,6 +12,7 @@ use Yii;
  * @property string $name
  * @property string $breed
  * @property int $age
+ * @property string $photo
  *
  * @property Category $category
  */
@@ -34,6 +35,7 @@ class Animal extends \yii\db\ActiveRecord
             [['category_id', 'name', 'breed'], 'required'],
             [['category_id', 'age'], 'integer'],
             [['name', 'breed'], 'string', 'max' => 45],
+            [['photo'], 'string', 'max' => 191],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -49,6 +51,7 @@ class Animal extends \yii\db\ActiveRecord
             'name' => 'Name',
             'breed' => 'Breed',
             'age' => 'Age',
+            'photo' => 'Photo',
         ];
     }
 

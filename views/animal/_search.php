@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'age') ?>
 
+    <?php // echo $form->field($model, 'photo') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
