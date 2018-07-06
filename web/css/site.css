@@ -136,6 +136,16 @@ td a{
     text-decoration: underline;
 }
 
+.custom-select{
+    width: 100%;
+    height: 40px;
+}
+
+.custom-select option{
+    background-color: white;
+    color: black;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

@@ -23,7 +23,7 @@ class Animal extends \yii\db\ActiveRecord
      */
 
     public $file;
-    
+
     public static function tableName()
     {
         return 'animal';
@@ -51,7 +51,7 @@ class Animal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
+            'category_id' => 'Category',
             'name' => 'Name',
             'breed' => 'Breed',
             'age' => 'Age',
