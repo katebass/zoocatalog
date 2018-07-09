@@ -69,22 +69,20 @@ class AnimalController extends Controller
 
         //проверка типа запроса isGet isPost isPut is Ajax 
         //var_dump(Yii::$app->request->isGet); die;
-        
         if ($model->load(Yii::$app->request->post())) {
-            $imageName = $model->name;
             $model->file = UploadedFile::getInstance($model, 'file');
-            
+            $model->save();
+            $imageName = $model->id;
+
             if($model->file){
                 $filePath = 'uploads/'.$imageName.'.'.$model->file->extension;
                 $model->file->saveAs($filePath);
             } else{
                 $filePath = 'uploads/default.png';
             }
-
             $model->photo = $filePath;
 
             $model->save();
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -104,8 +102,21 @@ class AnimalController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $photo = $model->photo;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if($model->file && $photo != $model->file){
+                unlink($photo);
+
+                $filename = 'uploads/'.$model->id.'.'.$model->file->extension;
+                $model->file->saveAs($filename);
+                $model->photo = $filename;
+            }
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -123,6 +134,12 @@ class AnimalController extends Controller
      */
     public function actionDelete($id)
     {
+        $photo = $this->findModel($id)->photo;
+
+        if($photo && $photo != "uploads/default.png"){
+            unlink($photo);
+        }
+        //die;
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
