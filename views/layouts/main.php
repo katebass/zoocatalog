@@ -39,8 +39,17 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Categories', 'url' => ['/category']],
-            ['label' => 'All Animals', 'url' => ['/animal']],
+            [
+                'label' => 'Categories', 
+                'url' => ['/category'],
+                'visible' => (!Yii::$app->user->isGuest)
+            ],
+
+            [
+                'label' => 'All Animals', 
+                'url' => ['/animal'],
+                'visible' => (!Yii::$app->user->isGuest)
+            ],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

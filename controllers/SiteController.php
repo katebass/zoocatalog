@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Category;
+use app\models\Post;
 
 class SiteController extends Controller
 {
@@ -62,6 +63,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+
         $categories = Category::find()
             ->all();
 
