@@ -146,6 +146,13 @@ td a{
     color: black;
 }
 
+.animal-view-photo{
+    width: 50%;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

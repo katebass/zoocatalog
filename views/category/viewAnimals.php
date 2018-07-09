@@ -35,7 +35,6 @@ use yii\helpers\Html;
                     <th>Name</th>
                     <th>Breed</th>
                     <th>Age</th>
-                    <th>Category</th>
                 </tr>
                 
                     <?php foreach ($animals as $animal): ?>
@@ -52,9 +51,6 @@ use yii\helpers\Html;
                                 <?= Html::encode($animal->age) ?>
                             </td>
 
-                            <td>
-                                <?= Html::encode($animal->category->title) ?>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
 

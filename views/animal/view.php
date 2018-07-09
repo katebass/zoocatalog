@@ -29,12 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+            [
+                'label' => 'category_id',
+                'value' => $model->category->title
+            ],
             'name',
             'breed',
             'age',
-            'photo',
+            //'photo',
         ],
     ]) ?>
+
+    <?= Html::img('@web/'.$model->photo, ['alt' => 'There is no photo', 'class' => "animal-view-photo"]) ?>
 
 </div>

@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?php if($category_id): ?>
+    <?php if (isset($category_id)): ?>
         <?php $model->category_id = $category_id; ?> 
         <?= $form->field($model, 'category_id')->hiddenInput()->label(false) ?>
     <?php else: ?>

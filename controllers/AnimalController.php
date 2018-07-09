@@ -73,9 +73,13 @@ class AnimalController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $imageName = $model->name;
             $model->file = UploadedFile::getInstance($model, 'file');
-            $filePath = 'uploads/'.$imageName.'.'.$model->file->extension;
             
-            $model->file->saveAs($filePath);
+            if($model->file){
+                $filePath = 'uploads/'.$imageName.'.'.$model->file->extension;
+                $model->file->saveAs($filePath);
+            } else{
+                $filePath = 'uploads/default.png';
+            }
 
             $model->photo = $filePath;
 
