@@ -10,6 +10,8 @@ namespace app\commands;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use linslin\yii2\curl;
+use app\models\Call;
+use app\models\Category;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -95,5 +97,37 @@ class HelloController extends Controller
         } else {
             echo "There is no data today. \n";
         }               
+    }
+
+    public function actionCsvToDatabase()
+    {
+
+        $filename = "2018-07-10.csv";
+        define('CSV_PATH','uploads/');
+
+        $csv_file = CSV_PATH . $filename;
+        $filecsv = file($csv_file);
+        
+
+        foreach($filecsv as $data){
+            if($data === reset($filecsv)) { continue; }
+            $record = explode(",", $data);
+            $newRecord = new Call;
+            
+            $newRecord->company_phone_number = $record[0];
+            $newRecord->created_date = $record[1];
+            $newRecord->violation_date = $record[2];
+            $newRecord->consumer_city = $record[3];
+            $newRecord->consumer_state = $record[4];
+            $newRecord->subject = $record[5];
+            $newRecord->recorded_message_or_robocall = ($record[6] == "Y") ? 1 : 0;
+
+            $newRecord->save();
+
+            // print_r($newRecord);
+            // die;
+
+        }
+        
     }
 }
