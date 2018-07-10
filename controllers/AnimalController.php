@@ -172,4 +172,15 @@ class AnimalController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionGallery($id){
+
+        $pictures = $this->findModel($id)->pictures;
+
+        return $this->render('gallery', [
+            'model' => $this->findModel($id),
+            'pictures' => $pictures,
+        ]);
+    }
+
 }

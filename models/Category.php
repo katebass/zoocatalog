@@ -52,6 +52,6 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getAnimals()
     {
-        return $this->hasMany(Animal::className(), ['categories_id' => 'id']);
+        return $this->hasMany(Animal::className(), ['category_id' => 'id']);
     }
 }

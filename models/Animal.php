@@ -15,6 +15,7 @@ use Yii;
  * @property string $photo
  *
  * @property Category $category
+ * @property Picture[] $pictures
  */
 class Animal extends \yii\db\ActiveRecord
 {
@@ -65,5 +66,13 @@ class Animal extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPictures()
+    {
+        return $this->hasMany(Picture::className(), ['animal_id' => 'id']);
     }
 }

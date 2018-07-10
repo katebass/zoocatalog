@@ -40,7 +40,7 @@ use yii\helpers\Html;
                     <?php foreach ($animals as $animal): ?>
                         <tr>
                             <td>
-                                <?= Html::a($animal->name, ['animal/view', 'id' => $animal->id]) ?>
+                                <?= Html::a($animal->name, ['animal/gallery', 'id' => $animal->id]) ?>
                             </td>
 
                             <td>

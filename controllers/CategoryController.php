@@ -65,6 +65,12 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        //$animals = $this->findModel($id)->animals;
+
+        // echo '<pre>';
+        // print_r($animals);
+        // die;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
