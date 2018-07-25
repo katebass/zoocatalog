@@ -12,6 +12,13 @@ $this->title = 'Animals';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="animal-index">
+    <p>
+        <?= Html::a('Insert calls to db', ['mass-insert'], ['class' => 'btn btn-warning']) ?>
+    </p>
+
+    <p>
+        <?= Html::a('Insert 3 rows', ['insert-three-rows'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,8 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             
             [
-                'label' => 'Category',
                 'attribute' => 'category_id',
+                'label' => 'Category',
+                'content'=>function($data){
+                    return $data->category->title;
+                },
             ],
             'name',
             'breed',

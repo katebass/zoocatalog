@@ -128,6 +128,11 @@ class HelloController extends Controller
             // die;
 
         }
+
+        // Yii::$app->db->createCommand()->batchInsert('animal',
+        //         ['category_id', 'name', 'breed', 'age', 'photo'],
+        //         $data)
+        //         ->execute();
         
     }
 }

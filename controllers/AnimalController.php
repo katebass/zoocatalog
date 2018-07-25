@@ -183,4 +183,53 @@ class AnimalController extends Controller
         ]);
     }
 
+    public function actionInsertThreeRows(){
+
+        $animals = array(
+            ['1', 'first_name', 'first_breed', '15', 'uploads/31.jpeg'],
+            ['2', 'second_name', 'second_breed', '15', 'uploads/31.jpeg'],
+            ['3', 'third_name', 'third_breed', '15', 'uploads/31.jpeg']
+        );
+
+        // echo "<pre>";
+        // print_r($animals);
+        // die;
+
+        Yii::$app->db->createCommand()->batchInsert('animal',
+                    ['category_id', 'name', 'breed', 'age', 'photo'],
+
+                      $animals 
+                    )
+                    ->execute();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionMassInsert(){
+        
+        $filename = "2018-07-10.csv";
+        define('CSV_PATH','uploads/');
+        $csv_file = CSV_PATH . $filename;
+        
+        $records = array_map('str_getcsv', file($csv_file));
+        array_shift($records);
+
+        // echo "<pre>";
+        // echo mb_convert_encoding($records[24244][3], "ASCII"); 
+        // echo str_replace("?", ":)", mb_convert_encoding($records[24244][3], "ASCII"));
+        // die;
+
+        Yii::$app->db->createCommand()->batchInsert(
+            'call',
+            ['company_phone_number', 'created_date', 'violation_date', 'consumer_city', 'consumer_state', 'subject', 'recorded_message_or_robocall'],
+            $records
+            )
+            ->execute();
+
+
+        // return $this->redirect(['index']);
+    }
+
+
+
 }
